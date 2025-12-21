@@ -18,9 +18,22 @@ const Register = () => {
     setdata((prev) => ({ ...prev, [id]: value }));
   };
 
-  const finalfunction = (e) => {
+  const finalfunction = async(e) => {
     e.preventDefault();
-    console.log(data);
+    const admindetails=data
+    const url="http://localhost:5000/adminregister"
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(admindetails),
+    };
+
+    const data=await fetch(url,options)
+    const result=await data.json()
+    console.log(result)
+    
   };
 
   return (
