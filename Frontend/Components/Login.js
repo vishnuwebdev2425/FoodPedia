@@ -1,21 +1,57 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, replace } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const Login = () => {
   const [data, setdata] = useState({
     Number: "",
     Password: "",
   });
+  const {setLoggedInUser}=useContext(UserContext)
+
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setdata((prev) => ({ ...prev, [id]: value }));
   };
+  const naviagte=useNavigate()
+  const finalnavigateFunction=()=>{
+    alert("Login Successfull")
+    setLoggedInUser(true)
 
-  const finalfunction = (e) => {
+
+    naviagte("/app/selectcategory",{replace:true});
+
+
+  }
+
+  const finalfunction =async (e) => {
     e.preventDefault();
     console.log(data);
+    const sendingdata=data
+    const url="http://localhost:5000/signin"
+    const options={
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body:JSON.stringify(sendingdata)
+    }
+    const gettingdata=await fetch(url,options)
+    const responsedata=await gettingdata.json()
+    console.log(responsedata)
+    const {token}=responsedata
+    console.log(token)
+    const Cookiedata = Cookies.set("jwttoken", token, {expires: 7});
+    if(token){
+      finalnavigateFunction()
+    }
+
+
   };
 
   return (

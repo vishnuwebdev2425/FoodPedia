@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { replace, useNavigate } from "react-router-dom";
 
 const Reset = () => {
   const [data, setdata] = useState({
@@ -7,15 +8,42 @@ const Reset = () => {
     HotelID: "",
     Password: "",
   });
-
+ 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setdata((prev) => ({ ...prev, [id]: value }));
   };
+  const navigate=useNavigate()
+ const finalgettingfunction=async()=>{
+  alert("Password Changed Successfully");
+  navigate("/home/login", {replace:true})
 
-  const finalfunction = (e) => {
+
+ }
+  const finalfunction =async (e) => {
     e.preventDefault();
-    console.log(data);
+    console.log(data)
+    const Resetdata=data
+    const url="http://localhost:5000/resetpassword"
+    const options={
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(Resetdata)
+      
+    }
+    const response =await fetch(url,options)
+    const getting_data=await response.json()
+    if(response.ok===true){
+      finalgettingfunction()
+    }else{
+      alert("Please Check Login Crendentials And Try Again")
+    }
+
+
+
+    
   };
 
   return (

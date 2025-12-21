@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   const [data, setdata] = useState({
@@ -14,10 +15,34 @@ const Admin = () => {
     setdata((prev) => ({ ...prev, Mobile: e.target.value }));
   const chnagepassword = (e) =>
     setdata((prev) => ({ ...prev, Password: e.target.value }));
+  const navigate=useNavigate()
+  const lastredirectFunction=async()=>{
+     alert("Admin Logged Successfully")
+     navigate("/app/adminloggedoverviewofhotel",{replace:true})
 
-  const finalfunction = (event) => {
+  }
+
+  const finalfunction = async (event) => {
     event.preventDefault();
-    console.log(data);
+    
+    const finaldata=data
+    const url="http://localhost:5000/adminlogin";
+    const options={
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(finaldata)
+    }
+    const final_data=await fetch(url,options)
+    const response=await final_data.json()
+    console.log(response)
+    if(final_data.ok===true){
+      lastredirectFunction()
+    }else{
+      alert(`${response.message}`)
+
+    }
   };
 
   return (

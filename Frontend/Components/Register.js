@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
   const [data, setdata] = useState({
@@ -12,11 +14,16 @@ const Register = () => {
     State: "",
     Password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setdata((prev) => ({ ...prev, [id]: value }));
   };
+  const lastFunction=()=>{
+    alert("Hotel Registered Successfuly Please Remember Hotel Id")
+    navigate("/home/login", { replace: true });
+  }
 
   const finalfunction = async(e) => {
     e.preventDefault();
@@ -30,10 +37,11 @@ const Register = () => {
       body: JSON.stringify(admindetails),
     };
 
-    const data=await fetch(url,options)
-    const result=await data.json()
-    console.log(result)
-    
+    const output=await fetch(url,options)
+    const result=await output.json()
+   if(output.ok===true){
+    lastFunction()
+   }
   };
 
   return (

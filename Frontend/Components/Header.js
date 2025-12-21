@@ -1,10 +1,23 @@
 import UserContext from "../utils/UserContext";
 import { useContext } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, replace } from "react-router-dom";
+import Cookies from "js-cookie"
+import {setLoggedInUser} from "../utils/UserContext"
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const  {setLoggedInUser}=useContext(UserContext)
   const data = useContext(UserContext);
+  const navigate=useNavigate()
+  const finalfunction=()=>{
+    const Cookiesdata=Cookies.remove("jwttoken")
+    setLoggedInUser(false)
+    navigate("/" ,{replace:true})
+    
+
+
+  }
   return (
     <motion.header
       initial={{ y: -60, opacity: 0 }}
@@ -30,21 +43,33 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className="hidden md:flex gap-10 font-medium text-gray-700">
-          {["Home", "Contact Us", "About Us"].map((item, index) => (
-            <motion.span
-              key={index}
-              whileHover={{ y: -3 }}
-              className="cursor-pointer hover:text-orange-600 transition-colors duration-300"
-            >
-              {item}
-            </motion.span>
-          ))}
+          <motion.span
+            whileHover={{ y: -3 }}
+            className="cursor-pointer hover:text-orange-600 transition-colors duration-300"
+          >
+            <Link to="/">Home</Link>
+          </motion.span>
+
+          <motion.span
+            whileHover={{ y: -3 }}
+            className="cursor-pointer hover:text-orange-600 transition-colors duration-300"
+          >
+            <Link to="home/contactus">Contact Us</Link>
+          </motion.span>
+
+          <motion.span
+            whileHover={{ y: -3 }}
+            className="cursor-pointer hover:text-orange-600 transition-colors duration-300"
+          >
+            <Link to="/home/aboutus">About Us</Link>
+          </motion.span>
         </nav>
 
         {/* Auth Button */}
         <motion.div whileHover={{ scale: 1.05 }}>
           {data.loggedInUser ? (
             <button
+              onClick={finalfunction}
               className="px-6 py-2 rounded-xl bg-orange-600 text-white font-semibold
               shadow-lg hover:bg-orange-700 transition-all duration-300 cursor-pointer"
             >

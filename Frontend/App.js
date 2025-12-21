@@ -1,6 +1,7 @@
 // index.js or main entry file
 import React, { useContext } from "react";
 import ReactDOM from "react-dom/client";
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,9 +19,12 @@ import Reset from "./Components/reset";
 import Category from "./Components/Category";
 import Admin from "./Components/Admin";
 import Hotel from "./Components/Hotel";
+import AdminArea from "./Components/AdminArea";
 
 import UserContext, { UserProvider } from "./utils/UserContext";
 import { Navigate } from "react-router-dom";
+import ContactUs from "./Components/ContactUs";
+import AboutUs from "./Components/AboutUs";
 
 const AppLayout = () => {
   return (
@@ -49,6 +53,8 @@ const router = createBrowserRouter([
       { path: "home/register", element: <Register /> },
       { path: "home/login", element: <Login /> },
       { path: "home/reset", element: <Reset /> },
+      {path:"home/contactus", element:<ContactUs/>},
+      {path:"home/aboutus",element:<AboutUs/>},
       {
         path: "app",
         element: <Verification />,
@@ -56,6 +62,7 @@ const router = createBrowserRouter([
           { path: "selectcategory", element: <Category /> },
           { path: "adminlogin", element: <Admin /> },
           { path: "hotelroomlogin", element: <Hotel /> },
+          { path: "adminloggedoverviewofhotel" ,element:<AdminArea/>},
         ],
       },
     ],

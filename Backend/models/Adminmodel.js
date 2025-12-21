@@ -5,7 +5,7 @@ const AdminSchema = new mongoose.Schema({
   Hotelname: {
     type: String,
     required: true,
-    maxLength: 10,
+    maxLength: 50,
     minLength: 4,
   },
   Hotelid: {
@@ -32,33 +32,25 @@ const AdminSchema = new mongoose.Schema({
   City: {
     type: String,
     required: true,
-    maxLength: 10,
+    maxLength: 50,
     minLength: 4,
   },
   District: {
     type: String,
     required: true,
-    maxLength: 10,
+    maxLength: 50,
     minLength: 4,
   },
   State: {
     type: String,
     required: true,
-    maxLength: 10,
+    maxLength: 50,
     minLength: 4,
   },
   password: {
     type: String,
     required: true,
-    validate: {
-      validator: function (value) {
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-          value
-        );
-      },
-      message:
-        "Password must contain 8 characters, including uppercase, lowercase, number, and special character",
-    },
+    
   },
 });
 
