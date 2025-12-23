@@ -27,6 +27,7 @@ import ContactUs from "./Components/ContactUs";
 import AboutUs from "./Components/AboutUs";
 import Room from "./Components/Room";
 import AddRoom from "./Components/Addroom";
+import Allrooms from "./Components/Allrooms";
 
 const AppLayout = () => {
   return (
@@ -67,6 +68,7 @@ const router = createBrowserRouter([
           { path: "adminloggedoverviewofhotel", element: <AdminArea /> },
           { path: "adminloggedoverviewofhotel/admin/rooms", element: <Room /> },
           { path: "admin/createroom", element:<AddRoom/> },
+          { path:"admin/viewallrooms",element:<Allrooms/>}
         ],
       },
     ],

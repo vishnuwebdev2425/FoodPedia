@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+import Cookies from "js-cookie";
+
 const AddRoom = () => {
   const [data, setData] = useState({
     number: "",
@@ -33,7 +35,7 @@ const AddRoom = () => {
     }));
   };
 
-  const submit = (e) => {
+  const submit = async(e) => {
     e.preventDefault();
     console.log("ROOM SAVED:", data);
     const Roomdata=data
@@ -44,9 +46,26 @@ const AddRoom = () => {
       ac: false,
       features: [],
     });
-    console.log(data)
-    console.log(Roomdata)
+    const url="http://localhost:5000/addroom"
+    const token=Cookies.get("jwttoken")
+    console.log(token)
+    const options={
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":`Bearer ${token}`
+      },
+      body:JSON.stringify(Roomdata)
+    }
+    const response=await fetch(url,options)
+    if(response.ok===true){
+      alert("Room Added Successfully")
+    }
+    else{
+      alert("Something Went Wrong Please Try Again")
+    }
   };
+ 
 
   return (
     <motion.div

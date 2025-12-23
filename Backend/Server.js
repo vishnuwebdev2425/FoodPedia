@@ -8,6 +8,7 @@ console.log('Working')
 app.use(express.json());
 const authrouter=require("./routes/authrouter")
 const adminRouter = require('./routes/adminlogin');
+const roomrouter=require("./routes/roomrouter")
 
 const InitalizeDB=async()=>{
     try{
@@ -29,3 +30,4 @@ InitalizeDB()
 
 app.use("/",authrouter)
 app.use("/",adminRouter)
+app.use("/",roomrouter)

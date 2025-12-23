@@ -1,12 +1,15 @@
 const jwt=require('jsonwebtoken')
 const Adminmodel =require("../models/Adminmodel")
+const tokens=require("./token")
 const UserAuth=async(req,res,next)=>{
     try{
-        const token=req.headers.authorization
+        //const token=tokens
+        const token=req.headers.authorization 
         if(!token){
             return res.status(500).json({message:"Invalid Crendetials"})
         }
         const authtoken=token.split(" ")[1]
+        
         const cookietoken= jwt.verify(authtoken,"jwttoken");
         const { Number } = cookietoken;
         const userdata = await Adminmodel.findOne({ MobileNumber: Number });

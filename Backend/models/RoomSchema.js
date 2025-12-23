@@ -1,10 +1,16 @@
 const mongoose=require('mongoose')
+const { ref } = require('process')
 const HotelSchema=new mongoose.Schema({
     number:{
         type:Number,
         unique:true,
         required:true,
         
+    },
+    Admin:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Adminmodel",
+        required:true
     },
     password:{
         type:String,
