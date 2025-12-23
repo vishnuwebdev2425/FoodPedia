@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const AdminArea = () => {
   const cardAnimate = {
@@ -6,6 +7,11 @@ const AdminArea = () => {
     animate: { opacity: 1, scale: 1, y: 0 },
     transition: { duration: 0.7 },
   };
+  const navigate=useNavigate()
+  const finalfunction=()=>{
+    navigate("admin/rooms", { replace: true });
+    
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to from-black via-gray-900 to-black text-white">
@@ -132,7 +138,7 @@ const AdminArea = () => {
           alt="rooms"
           className="rounded-md w-full h-[260] object-cover"
         />
-        <button className="bg-red-500 cursor-pointer hover:bg-red-600 text-black px-6 py-3 rounded-full font-bold text-lg">
+        <button onClick={finalfunction} className="bg-red-500 cursor-pointer hover:bg-red-600 text-black px-6 py-3 rounded-full font-bold text-lg">
           Explore Rooms
         </button>
       </motion.div>

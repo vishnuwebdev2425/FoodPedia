@@ -25,6 +25,8 @@ import UserContext, { UserProvider } from "./utils/UserContext";
 import { Navigate } from "react-router-dom";
 import ContactUs from "./Components/ContactUs";
 import AboutUs from "./Components/AboutUs";
+import Room from "./Components/Room";
+import AddRoom from "./Components/Addroom";
 
 const AppLayout = () => {
   return (
@@ -53,8 +55,8 @@ const router = createBrowserRouter([
       { path: "home/register", element: <Register /> },
       { path: "home/login", element: <Login /> },
       { path: "home/reset", element: <Reset /> },
-      {path:"home/contactus", element:<ContactUs/>},
-      {path:"home/aboutus",element:<AboutUs/>},
+      { path: "home/contactus", element: <ContactUs /> },
+      { path: "home/aboutus", element: <AboutUs /> },
       {
         path: "app",
         element: <Verification />,
@@ -62,7 +64,9 @@ const router = createBrowserRouter([
           { path: "selectcategory", element: <Category /> },
           { path: "adminlogin", element: <Admin /> },
           { path: "hotelroomlogin", element: <Hotel /> },
-          { path: "adminloggedoverviewofhotel" ,element:<AdminArea/>},
+          { path: "adminloggedoverviewofhotel", element: <AdminArea /> },
+          { path: "adminloggedoverviewofhotel/admin/rooms", element: <Room /> },
+          { path: "admin/createroom", element:<AddRoom/> },
         ],
       },
     ],
