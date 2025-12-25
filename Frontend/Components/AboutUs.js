@@ -15,7 +15,7 @@ const AboutUs = () => {
         <h1 className="text-5xl text-orange-600 font-extrabold tracking-wide">
           🍽️ About Foodpedia
         </h1>
-        <p className="mt-4 text-xl font-light max-w-2xl mx-auto">
+        <p className="mt-4 text-xl text-gray-800 max-w-2xl mx-auto">
           Smart hotel dining management — fast, digital, and effortless.
         </p>
       </motion.div>
@@ -85,7 +85,6 @@ const AboutUs = () => {
             "Room-wise food ordering",
             "Real-time order tracking",
             "Revenue management",
-          
           ].map((item, index) => (
             <motion.div
               key={index}
@@ -137,7 +136,10 @@ const AboutUs = () => {
             </p>
 
             <div className="flex gap-6 text-3xl mt-6 justify-center md:justify-start">
-              <a href="https://www.linkedin.com/in/vishnu-akkupalli-03297b2a7" target="_blank">
+              <a
+                href="https://www.linkedin.com/in/vishnu-akkupalli-03297b2a7"
+                target="_blank"
+              >
                 <FaLinkedin className="text-blue-700 hover:scale-110 transition" />
               </a>
               <a href="https://github.com" target="_blank">

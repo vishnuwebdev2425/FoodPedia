@@ -2,148 +2,176 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const AdminArea = () => {
-  const cardAnimate = {
-    initial: { opacity: 0, scale: 0.8, y: 40 },
-    animate: { opacity: 1, scale: 1, y: 0 },
-    transition: { duration: 0.7 },
+  const navigate = useNavigate();
+
+  // Animation Variants for the Container
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+    },
   };
-  const navigate=useNavigate()
-  const finalfunction=()=>{
+
+  // Variants for individual cards
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100 },
+    },
+  };
+
+  const finalfunction = () => {
     navigate("admin/rooms", { replace: true });
-    
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to from-black via-gray-900 to-black text-white">
+    <div className="min-h-screen bg-[#0a0a0a] text-white overflow-hidden relative">
+      {/* Decorative Background Glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-900/20 blur-[120px] rounded-full" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-900/20 blur-[120px] rounded-full" />
+
       {/* Hero Section */}
-      <div className="p-6 flex flex-col md:flex-row items-center justify-between gap-6 container mx-auto">
-        {/* Text */}
+      <div className="relative z-10 p-8 flex flex-col md:flex-row items-center justify-between gap-12 max-w-7xl mx-auto pt-16">
         <motion.div
-          initial={{ x: -80, opacity: 0 }}
+          initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-[500]"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex-1 text-center md:text-left"
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-            Growth begins here —
+          <h1 className="text-5xl md:text-6xl font-black leading-[1.1] tracking-tight">
+            Growth begins here <span className="text-gray-500">—</span>
             <br />
-            <span className="text-yellow-400">manage orders</span>, track
-            <span className="text-green-400"> revenue</span>, and unlock
-            <span className="text-blue-400"> performance.</span>
+            <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+              Master your Dashboard.
+            </span>
           </h1>
+          <p className="text-gray-400 mt-6 text-lg max-w-lg">
+            Effortlessly manage orders, monitor real-time revenue, and optimize
+            your hotel performance with our advanced tracking suite.
+          </p>
         </motion.div>
 
-        {/* Image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9 }}
+          initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1 }}
+          className="flex-1"
         >
-          <img
-            src="https://img.freepik.com/premium-photo/photography-professional-logistics-manager_1288657-23311.jpg?w=2000"
-            alt="Admin Growth"
-            className="rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.3)] w-[350] md:w-[450]"
-          />
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+            <img
+              src="https://img.freepik.com/premium-photo/photography-professional-logistics-manager_1288657-23311.jpg?w=2000"
+              alt="Admin Growth"
+              className="relative rounded-2xl shadow-2xl w-full object-cover border border-white/10"
+            />
+          </div>
         </motion.div>
       </div>
 
       {/* Section Title */}
-      <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-        className="text-center text-4xl font-extrabold py-6"
-      >
-        Explore Your Hotel Dashboard
-      </motion.h1>
-
-      {/* Cards Container */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-8 pb-10 container mx-auto">
-        {/* CARD 1 */}
-        <motion.div
-          {...cardAnimate}
-          whileHover={{ scale: 1.05 }}
-          className="bg-gray-800 rounded-xl shadow-lg p-5 flex flex-col items-center gap-4 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition"
+      <div className="text-center mt-24 mb-12">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold tracking-tighter"
         >
-          <img
-            src="https://tse1.mm.bing.net/th/id/OIP.w1yPPFpoDRf1eCOf1C58xQHaE8?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
-            alt="orders"
-            className="rounded-md w-full h-[230] object-cover"
-          />
-          <button className="bg-yellow-500 cursor-pointer hover:bg-yellow-600 text-black px-5 py-2 rounded-full font-bold">
-            Track Your Orders
-          </button>
-        </motion.div>
-
-        {/* CARD 2 */}
-        <motion.div
-          {...cardAnimate}
-          transition={{ delay: 0.15, duration: 0.7 }}
-          whileHover={{ scale: 1.05 }}
-          className="bg-gray-800 rounded-xl shadow-lg p-5 flex flex-col items-center gap-4 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition"
-        >
-          <img
-            src="https://img.freepik.com/premium-vector/increase-revenue-income-investment-profit-growing-income-wealth-growth-chart-diagram-savings-investment-return-concept-businessman-carry-money-coin-stack-walk-up-growth-graph-diagram_466036-1276.jpg?w=2000"
-            alt="revenue"
-            className="rounded-md w-full h-[230] object-cover"
-          />
-          <button className="bg-green-500 cursor-pointer hover:bg-green-600 text-black px-5 py-2 rounded-full font-bold">
-            Check Total Revenue
-          </button>
-        </motion.div>
-
-        {/* CARD 3 */}
-        <motion.div
-          {...cardAnimate}
-          transition={{ delay: 0.3, duration: 0.7 }}
-          whileHover={{ scale: 1.05 }}
-          className="bg-gray-800 rounded-xl shadow-lg p-5 flex flex-col items-center gap-4 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition"
-        >
-          <img
-            src="https://tse1.mm.bing.net/th/id/OIP.1oUBVrczPzKv0ncc14Gd1gHaE7?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
-            alt="employees"
-            className="rounded-md w-full h-[230] object-cover"
-          />
-          <button className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-black px-5 py-2 rounded-full font-bold">
-            Check Employee Details
-          </button>
-        </motion.div>
-
-        {/* CARD 4 */}
-        <motion.div
-          {...cardAnimate}
-          transition={{ delay: 0.45, duration: 0.7 }}
-          whileHover={{ scale: 1.05 }}
-          className="bg-gray-800 rounded-xl shadow-lg p-5 flex flex-col items-center gap-4 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition"
-        >
-          <img
-            src="https://tse2.mm.bing.net/th/id/OIP.Y2zd3VxtVAO3_zZ9wPDMLgHaEu?cb=ucfimg2&ucfimg=1&w=870&h=555&rs=1&pid=ImgDetMain&o=7&rm=3"
-            alt="hotel"
-            className="rounded-md w-full h-[230] object-cover"
-          />
-          <button className="bg-purple-500 cursor-pointer hover:bg-purple-600 text-black px-5 py-2 rounded-full font-bold">
-            Get Hotel Profile
-          </button>
-        </motion.div>
+          Hotel Management Core
+        </motion.h2>
+        <div className="h-1 w-20 bg-yellow-500 mx-auto mt-4 rounded-full" />
       </div>
 
-      {/* Bottom Section */}
+      {/* Cards Grid */}
       <motion.div
-        {...cardAnimate}
-        whileHover={{ scale: 1.05 }}
-        className="max-w-[900] mx-auto bg-gray-800 rounded-xl shadow-lg p-5 flex flex-col items-center gap-4 hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition mb-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8 max-w-7xl mx-auto pb-10"
       >
-        <img
-          src="https://tse4.mm.bing.net/th/id/OIP.eUmRjpZOz3-yqS_-wEwRPQHaE8?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
-          alt="rooms"
-          className="rounded-md w-full h-[260] object-cover"
+        <AdminCard
+          img="https://tse1.mm.bing.net/th/id/OIP.w1yPPFpoDRf1eCOf1C58xQHaE8?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
+          title="Track Orders"
+          btnColor="bg-yellow-500"
+          variants={itemVariants}
         />
-        <button onClick={finalfunction} className="bg-red-500 cursor-pointer hover:bg-red-600 text-black px-6 py-3 rounded-full font-bold text-lg">
-          Explore Rooms
-        </button>
+        <AdminCard
+          img="https://img.freepik.com/premium-vector/increase-revenue-income-investment-profit-growing-income-wealth-growth-chart-diagram-savings-investment-return-concept-businessman-carry-money-coin-stack-walk-up-growth-graph-diagram_466036-1276.jpg?w=2000"
+          title="Total Revenue"
+          btnColor="bg-green-500"
+          variants={itemVariants}
+        />
+        <AdminCard
+          img="https://tse1.mm.bing.net/th/id/OIP.1oUBVrczPzKv0ncc14Gd1gHaE7?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
+          title="Team Details"
+          btnColor="bg-blue-500"
+          variants={itemVariants}
+        />
+        <AdminCard
+          img="https://tse2.mm.bing.net/th/id/OIP.Y2zd3VxtVAO3_zZ9wPDMLgHaEu?cb=ucfimg2&ucfimg=1&w=870&h=555&rs=1&pid=ImgDetMain&o=7&rm=3"
+          title="Hotel Profile"
+          btnColor="bg-purple-500"
+          variants={itemVariants}
+        />
+      </motion.div>
+
+      {/* Featured Bottom Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="max-w-5xl mx-auto px-8 pb-20 mt-10"
+      >
+        <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 flex flex-col items-center">
+          <img
+            src="https://tse4.mm.bing.net/th/id/OIP.eUmRjpZOz3-yqS_-wEwRPQHaE8?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
+            alt="rooms"
+            className="rounded-2xl w-full h-[350px] object-cover transition duration-700 group-hover:scale-105"
+          />
+          <div className="mt-8 flex flex-col items-center text-center">
+            <h3 className="text-2xl font-bold mb-4">Inventory & Room Status</h3>
+            <motion.button
+              onClick={finalfunction}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 20px rgba(239, 68, 68, 0.4)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-red-600 hover:bg-red-500 text-white px-10 py-4 rounded-full font-bold text-lg transition shadow-xl"
+            >
+              Explore Rooms
+            </motion.button>
+          </div>
+        </div>
       </motion.div>
     </div>
   );
 };
+
+// Reusable Card Component to keep code clean
+const AdminCard = ({ img, title, btnColor, variants }) => (
+  <motion.div
+    variants={variants}
+    whileHover={{ y: -10 }}
+    className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col gap-4 group transition-all hover:bg-white/10"
+  >
+    <div className="overflow-hidden rounded-xl h-48">
+      <img
+        src={img}
+        alt={title}
+        className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+      />
+    </div>
+    <motion.button
+      whileHover={{ scale: 1.02 }}
+      className={`${btnColor} text-black py-3 rounded-xl font-bold tracking-tight hover:brightness-110 transition`}
+    >
+      {title}
+    </motion.button>
+  </motion.div>
+);
 
 export default AdminArea;
