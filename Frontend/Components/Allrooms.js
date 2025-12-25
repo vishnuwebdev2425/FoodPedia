@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Cookies from "js-cookie";
 import {  useNavigate } from "react-router-dom";
+import ShimmerCardsGrid from "./Shimmer";
 
 const Allrooms = () => {
   const images = [
@@ -107,7 +108,7 @@ const Allrooms = () => {
           className="grid grid-cols-1 md-grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {data.length === 0 && (
-            <p className="text-gray-500 text-xl">No rooms found...</p>
+            <ShimmerCardsGrid/>
           )}
 
           {data.map((room, index) => (

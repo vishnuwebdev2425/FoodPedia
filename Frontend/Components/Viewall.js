@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cookies from 'js-cookie'
 import { motion } from "framer-motion";
+import ShimmerCardsGrid from "./Shimmer";
 
 const Viewall=()=>{
   const [data, newdata] = useState([]);
@@ -87,7 +88,7 @@ const Viewall=()=>{
         >
           {data.length === 0 && (
             
-            <p className="text-gray-500 text-xl">No rooms found...</p>
+            <ShimmerCardsGrid/>
           )}
 
           {data.map((room, index) => (
