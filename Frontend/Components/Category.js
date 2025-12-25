@@ -63,13 +63,42 @@ const Category = () => {
             Choose your room to place orders directly.
           </p>
 
-          <Link to="/app/hotelroomlogin">
+          <Link to="/app/getallrooms">
+            <motion.button
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.94 }}
+              className="px-8 cursor-pointer  py-3 bg-orange-600 text-white rounded-xl font-semibold shadow-lg hover:bg-orange-700 transition"
+            >
+              View Rooms
+            </motion.button>
+          </Link>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          whileHover={{ scale: 1.05, translateY: -6 }}
+          className="bg-white/80  md:col-span-2 backdrop-blur-xl rounded-3xl p-10 shadow-2xl text-center border border-orange-100"
+        >
+          <motion.img
+            src="https://img.freepik.com/premium-photo/restaurant-food-restaurant-menu-photos-menu_756748-43978.jpg?w=996"
+            alt="rooms"
+            className="w-40 mx-auto mb-6 rounded-xl"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ repeat: Infinity, duration: 4 }}
+          />
+          <h1 className="text-2xl font-bold mb-3 text-gray-800">View Menu</h1>
+          <p className="text-gray-500 text-sm mb-6">
+            Take a quick look at the menu—then choose the room you love!
+          </p>
+
+          <Link to="/app/getallrooms">
             <motion.button
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.94 }}
               className="px-8 cursor-pointer py-3 bg-orange-600 text-white rounded-xl font-semibold shadow-lg hover:bg-orange-700 transition"
             >
-              Room Login
+              View Menu
             </motion.button>
           </Link>
         </motion.div>

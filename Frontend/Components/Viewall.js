@@ -1,43 +1,33 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
+import Cookies from 'js-cookie'
 import { motion } from "framer-motion";
-import Cookies from "js-cookie";
-import {  useNavigate } from "react-router-dom";
 
-const Allrooms = () => {
+const Viewall=()=>{
+  const [data, newdata] = useState([]);
+  useEffect(() => {
+    callfunction();
+  }, []);
   const images = [
     "https://tse3.mm.bing.net/th/id/OIP.gkbu_3onf3vpOHdH-kGZswHaEo?rs=1&pid=ImgDetMain",
     "https://tse2.mm.bing.net/th/id/OIP.uReSoQJcBd8-N1KwcfXdOQHaE8?rs=1&pid=ImgDetMain",
     "https://tse2.mm.bing.net/th/id/OIP.7mluPgLsr36Y3qbtxOBd0gHaE8?rs=1&pid=ImgDetMain",
   ];
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    finalfunction();
-  }, []);
-  const navigate=useNavigate()
- const finalnavigation=()=>{
-  alert("Navigating into Add room Portion")
-  navigate("/app/admin/createroom", { replace: true });
-
- }
-  const finalfunction = async () => {
-    const url = "http://localhost:5000/getallrooms";
-    const jwt = Cookies.get("jwttoken");
-
-    const option = {
+  const jwt = Cookies.get("jwttoken");
+  const callfunction = async () => {
+    const url = "http://localhost:5000/viewallrooms";
+    console.log(jwt)
+    const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${jwt}`,
+        "Authorization": `Bearer ${jwt}`,
       },
     };
-
-    const response = await fetch(url, option);
-    const finaldata = await response.json();
-    setData(finaldata);
+    const response = await fetch(url, options);
+    const data = await response.json();
+    console.log(data)
+    newdata(data);
   };
-
   // ANIMATION VARIANTS
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -52,32 +42,28 @@ const Allrooms = () => {
     visible: { y: 0, opacity: 1 },
     hover: { scale: 1.03, transition: { duration: 0.3 } },
   };
-  
+  const BookingFuntion=async(roomNumber)=>{
+
+    const url=`http://localhost:5000/bookroom/${roomNumber}`
+    const options={
+        method:"GET",
+        headers:{
+            "Content-Type":"application/json",
+            "Authorization":`Bearer ${jwt}`
+        }
+    }
+    const response=await fetch(url,options)
+    const data=await response.json()
+    if(response.ok===true){
+        alert("Room Booked Succesfully Wait For The Call From Hotel")
+    }
+
+
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
-      {/* HERO SECTION */}
-      <motion.header
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative h-64 flex items-center justify-center bg-indigo-900 text-white overflow-hidden"
-      >
-        <div
-          className="absolute inset-0 opacity-30 bg-cover bg-center"
-          style={{ backgroundImage: `url(${images[0]})` }}
-        />
-        <div className="relative z-10 text-center px-4">
-          <motion.h1
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            className="text-3xl md:text-5xl font-bold mb-4"
-          >
-            Grow your hotel, one room at a time.
-          </motion.h1>
-          <p className="text-xl text-indigo-200">
-            Start building your success today
-          </p>
-        </div>
-      </motion.header>
+    
 
       {/* MAIN CONTENT */}
       <main className="max-w-7xl mx-auto py-12 px-6">
@@ -87,16 +73,9 @@ const Allrooms = () => {
             animate={{ x: 0, opacity: 1 }}
             className="text-4xl font-extrabold text-gray-800"
           >
-            View All Rooms
           </motion.h2>
 
-          <div className="flex space-x-2">
-            
-              <button onClick={finalnavigation} className="bg-indigo-600 cursor-pointer  text-white px-6 py-2 rounded-full shadow-lg hover:bg-indigo-700 transition">
-                + Add New Room
-              </button>
-        
-          </div>
+          
         </div>
 
         {/* ROOM GRID */}
@@ -107,6 +86,7 @@ const Allrooms = () => {
           className="grid grid-cols-1 md-grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {data.length === 0 && (
+            
             <p className="text-gray-500 text-xl">No rooms found...</p>
           )}
 
@@ -149,8 +129,8 @@ const Allrooms = () => {
                 </div>
 
                 <div className="mt-6 flex gap-3">
-                  <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition">
-                    Edit Details
+                  <button onClick={()=>BookingFuntion(room.number)}  className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition">
+                    Book
                   </button>
                   <button className="flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 py-2 rounded-lg font-medium transition">
                     Quick View
@@ -163,6 +143,6 @@ const Allrooms = () => {
       </main>
     </div>
   );
-};
+}
 
-export default Allrooms;
+export default Viewall

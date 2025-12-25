@@ -2,7 +2,7 @@ const express=require('express')
 const roomrouter=express.Router()
 const UserAuth=require('../utils/UserAuth')
 const Adminmodel = require('../models/Adminmodel')
-const HotelModel = require('../models/RoomSchema')
+const RoomModel=require('../models/RoomSchema')
 
 
 
@@ -44,7 +44,7 @@ roomrouter.post("/addroom",UserAuth,async(req,res)=>{
             features:features
 
         }
-        const newHotelroom=await new HotelModel(newobj)
+        const newHotelroom=await new RoomModel(newobj)
         await newHotelroom.save()
         return res.status(200).json({message:"Everything went  Good"})
     }catch(err){
@@ -53,4 +53,35 @@ roomrouter.post("/addroom",UserAuth,async(req,res)=>{
 })
 
 
+roomrouter.get("/getallrooms",UserAuth,async(req,res)=>{
+  try{
+    const {_id}=req.user
+  
+    const data = await RoomModel.find({Admin:_id});
+    return res.status(200).send(data)
+  }catch(err){
+    return res.status(200).json({message:err.message})
+  }
+})
+
+roomrouter.get("/viewallrooms",UserAuth,async(req,res)=>{
+  try{
+    const { _id } = req.user;
+
+    const data = await RoomModel.find({ Admin: _id });
+    return res.status(200).send(data);
+
+
+  }catch(err){
+    return res.status(400).json({message:err.message})
+  }
+})
+roomrouter.get("/bookroom/:roomNumber", async (req, res) => {
+  try {
+    const id = req.params.roomNumber;
+    return res.status(200).send(id);
+  } catch (err) {
+    return res.status(400).json({ message: "Something Went Wrong" });
+  }
+});
 module.exports=roomrouter
