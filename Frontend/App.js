@@ -29,6 +29,7 @@ import Room from "./Components/Room";
 import AddRoom from "./Components/Addroom";
 import Allrooms from "./Components/Allrooms";
 import Viewall from "./Components/Viewall";
+import Menuarea from "./Components/Menuarea";
 
 const AppLayout = () => {
   return (
@@ -70,7 +71,8 @@ const router = createBrowserRouter([
           { path: "adminloggedoverviewofhotel/admin/rooms", element: <Room /> },
           { path: "admin/createroom", element:<AddRoom/> },
           {path:"getallrooms" ,element:<Viewall/>},
-          { path:"admin/viewallrooms",element:<Allrooms/>}
+          { path:"admin/viewallrooms",element:<Allrooms/>},
+          {path:"admin/viewmenu",element:<Menuarea/>}
         ],
       },
     ],

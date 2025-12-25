@@ -3,6 +3,7 @@ const roomrouter=express.Router()
 const UserAuth=require('../utils/UserAuth')
 const Adminmodel = require('../models/Adminmodel')
 const RoomModel=require('../models/RoomSchema')
+const Menumodel = require('../models/MenuModel')
 
 
 
@@ -84,4 +85,33 @@ roomrouter.get("/bookroom/:roomNumber", async (req, res) => {
     return res.status(400).json({ message: "Something Went Wrong" });
   }
 });
+
+roomrouter.post("/addmenuitem",async(req,res)=>{
+  try{
+    const {image}=req.body
+    const newobj={image}
+    const result=await new Menumodel(newobj)
+    await result.save()
+    return res.status(200).send({message:"Everything Went Good"})
+
+
+  }catch(err){
+    return res.status(400).json({message:err.message})
+  }
+})
+
+roomrouter.get("/getallmenuitems",UserAuth,async(req,res)=>{
+  try{
+    const {_id}=req.user;
+    if(!_id){
+      return res.status(500).json({message:"Something Went Wrong"})
+
+    }
+    const result=await Menumodel.find({})
+    res.status(200).send(result)
+
+  }catch(err){
+    return res.status(400).json({message:err.message})
+  }
+})
 module.exports=roomrouter

@@ -92,7 +92,7 @@ const Category = () => {
             Take a quick look at the menu—then choose the room you love!
           </p>
 
-          <Link to="/app/getallrooms">
+          <Link to="/app/admin/viewmenu">
             <motion.button
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.94 }}
