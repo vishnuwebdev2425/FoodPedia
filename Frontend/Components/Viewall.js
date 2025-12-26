@@ -54,9 +54,13 @@ const Viewall=()=>{
         }
     }
     const response=await fetch(url,options)
+    console.log(response)
     const data=await response.json()
+   
     if(response.ok===true){
         alert("Room Booked Succesfully Wait For The Call From Hotel")
+    }else{
+      alert("Room Already Occupied Please Try Another Room")
     }
 
 
@@ -64,8 +68,6 @@ const Viewall=()=>{
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
-    
-
       {/* MAIN CONTENT */}
       <main className="max-w-7xl mx-auto py-12 px-6">
         <div className="flex justify-between items-center mb-10">
@@ -73,10 +75,7 @@ const Viewall=()=>{
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             className="text-4xl font-extrabold text-gray-800"
-          >
-          </motion.h2>
-
-          
+          ></motion.h2>
         </div>
 
         {/* ROOM GRID */}
@@ -86,10 +85,7 @@ const Viewall=()=>{
           animate="visible"
           className="grid grid-cols-1 md-grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {data.length === 0 && (
-            
-            <ShimmerCardsGrid/>
-          )}
+          {data.length === 0 && <ShimmerCardsGrid />}
 
           {data.map((room, index) => (
             <motion.div
@@ -122,15 +118,67 @@ const Viewall=()=>{
                     <h3 className="text-xl font-bold text-gray-800">
                       Room No: {room.number}
                     </h3>
-                    <p className="text-gray-500">Admin: {room.Admin}</p>
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium mt-1 ${
+                        room.status === "Available"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
+                    >
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
+                          room.status === "Available"
+                            ? "bg-green-500"
+                            : "bg-red-500"
+                        }`}
+                      ></span>
+                      {room.status}
+                    </span>
                   </div>
-                  <span className="text-2xl font-bold text-indigo-600">
-                    ₹{room.price}
-                  </span>
+                  <div className="text-right">
+                    <span className="text-2xl font-bold text-indigo-600">
+                      ₹{room.price}
+                    </span>
+                    <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">
+                      Per Night
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                    Amenities
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {/* AC Badge */}
+                    {room.ac && (
+                      <span className="flex items-center gap-1 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg border border-blue-100">
+                        ❄️ AC
+                      </span>
+                    )}
+
+                    {/* Dynamic Features from Array */}
+                    {room.features &&
+                      room.features.map((feature, index) => (
+                        <span
+                          key={index}
+                          className="flex items-center gap-1 px-3 py-1 bg-gray-50 text-gray-600 text-xs font-semibold rounded-lg border border-gray-200"
+                        >
+                          {feature === "WiFi"
+                            ? "📶"
+                            : feature === "Balcony"
+                            ? "🌅"
+                            : "✨"}{" "}
+                          {feature}
+                        </span>
+                      ))}
+                  </div>
                 </div>
 
                 <div className="mt-6 flex gap-3">
-                  <button onClick={()=>BookingFuntion(room.number)}  className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition">
+                  <button
+                    onClick={() => BookingFuntion(room.number)}
+                    className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition"
+                  >
                     Book
                   </button>
                   <button className="flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 py-2 rounded-lg font-medium transition">

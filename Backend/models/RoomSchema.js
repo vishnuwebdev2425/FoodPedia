@@ -31,7 +31,7 @@ const RoomSchema = new mongoose.Schema({
     type: String,
     default:"Available",
     validate(value) {
-      const allowed = ["Available", "Not Available"];
+      const allowed = ["Available", "Booked","Waitlisted"];
       if (!allowed.includes(value)) {
         throw new Error("Status is not valid");
       }
