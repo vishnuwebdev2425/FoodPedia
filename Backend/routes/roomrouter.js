@@ -65,6 +65,16 @@ roomrouter.get("/getallrooms",UserAuth,async(req,res)=>{
   }
 })
 
+roomrouter.get("/getallroompublicview",async(req,res)=>{
+  try{
+    const data = await RoomModel.find().populate("Admin");
+    return res.status(200).send(data)
+
+  }catch(err){
+    return res.status(400).json({message:err.message})
+  }
+})
+
 roomrouter.get("/viewallrooms",UserAuth,async(req,res)=>{
   try{
     const { _id } = req.user;
@@ -123,10 +133,12 @@ roomrouter.get("/bookroom/:number",UserAuth,async(req,res)=>{
     if (checking_status!== "Available") {
       return res.status(500).json({ message: "Room is Occupied" });
     }
-    
+    if (checking_status !== "Booked") {
+      return res.status(500).json({ message: "Room is Occupied" });
+    }
     const final_result = await RoomModel.findOneAndUpdate(
       { number: Roomnumber, Admin: _id },
-      { status: "BOOKED" },
+      { status: "Waitlisted" },
       { new: true }
     );
     return res.status(200).json({message:"Room Booked Successfully"})
@@ -137,4 +149,43 @@ roomrouter.get("/bookroom/:number",UserAuth,async(req,res)=>{
   }
   
 });
+
+roomrouter.get("/getsingleroom/:roomNumber",async(req,res)=>{
+  try{
+    const roomNumber=req.params.roomNumber;
+    const room = await RoomModel.findOne({ number: roomNumber }).populate(
+      "Admin"
+    );
+    return res.status(200).send(room)
+
+    
+
+  }catch(err){
+    return res.status(400).json({message:err.message})
+  }
+});
+
+roomrouter.get("/changingroomstatus/:adminid/:roomNumber",async(req,res)=>{
+  try{
+    const adminid=req.params.adminid
+    const roomNumber=req.params.roomNumber
+    const Finding_room = await RoomModel.findOne({ number: roomNumber, Admin :adminid});
+    if (!Finding_room) {
+      return res.status(500).json("Something Went Wrong");
+    }
+    if(Finding_room.status!=="Available"){
+      return res.status(400).json("Room Is Not Available")
+    }
+    const updatedresult = await RoomModel.findOneAndUpdate(
+      { number: roomNumber, Admin: adminid },
+      { status: "Waitlisted" },
+      { new: true }
+    );
+    
+    res.status(200).send("Everything Work Fine")
+
+  }catch(err){
+    return res.status(200).json({message:err.message})
+  }
+})
 module.exports=roomrouter

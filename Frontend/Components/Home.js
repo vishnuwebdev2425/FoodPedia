@@ -1,5 +1,6 @@
 import { motion, useCycle } from "framer-motion";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const images = [
   "https://tse3.mm.bing.net/th/id/OIP.T03aJagv5g4JwoG0Di4gFwHaEb?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -98,6 +99,11 @@ const Home = () => {
           <button className="px-8 py-4 cursor-pointer bg-orange-600 text-white rounded-2xl font-semibold shadow-lg shadow-orange-300 hover:bg-orange-700 hover:shadow-xl transition-all">
             Get Started
           </button>
+          <Link to="/home/getrooms/publicview">
+            <button className="px-8 py-4 cursor-pointer ml-2.5 bg-orange-600 text-white rounded-2xl font-semibold shadow-lg shadow-orange-300 hover:bg-orange-700 hover:shadow-xl transition-all">
+              Book Your Room Now
+            </button>
+          </Link>
         </motion.div>
       </section>
       <div>

@@ -30,7 +30,8 @@ import AddRoom from "./Components/Addroom";
 import Allrooms from "./Components/Allrooms";
 import Viewall from "./Components/Viewall";
 import Menuarea from "./Components/Menuarea";
-
+import ViewPublic from "./Components/ViewPublic";
+import SingleRoom from "./Components/SingleRoom";
 const AppLayout = () => {
   return (
     <div>
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
       { path: "home/reset", element: <Reset /> },
       { path: "home/contactus", element: <ContactUs /> },
       { path: "home/aboutus", element: <AboutUs /> },
+      { path: "home/getrooms/publicview", element: <ViewPublic /> },
+      {
+        path: "/home/getrooms/publicview/:roomNumber",
+        element: <SingleRoom />,
+      },
       {
         path: "app",
         element: <Verification />,
@@ -69,10 +75,10 @@ const router = createBrowserRouter([
           { path: "hotelroomlogin", element: <Hotel /> },
           { path: "adminloggedoverviewofhotel", element: <AdminArea /> },
           { path: "adminloggedoverviewofhotel/admin/rooms", element: <Room /> },
-          { path: "admin/createroom", element:<AddRoom/> },
-          {path:"getallrooms" ,element:<Viewall/>},
-          { path:"admin/viewallrooms",element:<Allrooms/>},
-          {path:"admin/viewmenu",element:<Menuarea/>}
+          { path: "admin/createroom", element: <AddRoom /> },
+          { path: "getallrooms", element: <Viewall /> },
+          { path: "admin/viewallrooms", element: <Allrooms /> },
+          { path: "admin/viewmenu", element: <Menuarea /> },
         ],
       },
     ],
