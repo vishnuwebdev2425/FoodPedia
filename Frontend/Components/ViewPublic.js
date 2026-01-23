@@ -70,7 +70,7 @@ const ViewPublic=()=>{
   }
   const navigate=useNavigate()
   const ViewHotelFunction=async(roomNumber)=>{
-    navigate(`/home/getrooms/publicview/${roomNumber}`,{return:true});
+    navigate(`/home/getrooms/publicview/${roomNumber}`);
 
 
   }
@@ -187,13 +187,13 @@ const ViewPublic=()=>{
 
                 <div className="mt-6 flex gap-3">
                   <button
-                    onClick={() => ViewHotelFunction(room.number)}
+                    onClick={() => BookingFuntion(room.number)}
                     className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition"
                   >
                     Book
                   </button>
                   
-                  <button onClick={()=>ViewHotelFunction(room.number)} className="flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 py-2 rounded-lg font-medium transition">
+                  <button onClick={()=>ViewHotelFunction(room.number)} className="flex-1 cursor-pointer bg-indigo-50 hover:bg-indigo-100 text-indigo-600 py-2 rounded-lg font-medium transition">
                     Quick View
                   </button>
                 </div>
