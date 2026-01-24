@@ -94,6 +94,18 @@ roomrouter.post("/bookroomfromuser", async (req, res) => {
       district:dist
     });
     await newobj.save();
+    const final_result = await RoomModel.findOneAndUpdate(
+      {
+        Admin: roomId,
+        number: roomNumber,
+      },
+      {
+        status: "Waitlisted",
+      },{
+        new:true
+      }
+    );
+
     return res.status(200).json({message:"Request Form SuccessFully"});
 
     
