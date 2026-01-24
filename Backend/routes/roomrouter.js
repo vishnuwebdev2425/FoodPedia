@@ -4,7 +4,8 @@ const UserAuth=require('../utils/UserAuth')
 const Adminmodel = require('../models/Adminmodel')
 const RoomModel=require('../models/RoomSchema')
 const Menumodel = require('../models/MenuModel')
-
+const BookModel=require("../models/bookSchema");
+const mongoose=require('mongoose');
 
 
 roomrouter.post("/addroom",UserAuth,async(req,res)=>{
@@ -64,7 +65,43 @@ roomrouter.get("/getallrooms",UserAuth,async(req,res)=>{
     return res.status(200).json({message:err.message})
   }
 })
+roomrouter.post("/bookroomfromuser", async (req, res) => {
+  try {
+    const{
+      roomId,
+        roomNumber,
+        Name,
+        dist,
+        email,
+        number,
+        state    
+    }=req.body;
+    const response=await RoomModel.findOne({Admin:roomId});
+    if(!response){
+      return res.status(200).json({message:"Room Address Is Not Available"})
+    } 
+    const anotherresponse=await RoomModel.findOne({number:roomNumber})
+    if(!anotherresponse){
+      return res.status(200).json({message:"Room Id Is Not Available"});
+    }
+    const newobj=await new BookModel({
+      roomId:roomId,
+      roomnumber:roomNumber,
+      name:Name,
+      mail:email,
+      phone:number,
+      state:state,
+      district:dist
+    });
+    await newobj.save();
+    return res.status(200).json({message:"Request Form SuccessFully"});
 
+    
+   
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+});
 roomrouter.get("/getallroompublicview",async(req,res)=>{
   try{
     const data = await RoomModel.find().populate("Admin");
@@ -188,4 +225,6 @@ roomrouter.get("/changingroomstatus/:adminid/:roomNumber",async(req,res)=>{
     return res.status(200).json({message:err.message})
   }
 })
+
+
 module.exports=roomrouter

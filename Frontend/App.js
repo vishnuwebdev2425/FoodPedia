@@ -32,6 +32,7 @@ import Viewall from "./Components/Viewall";
 import Menuarea from "./Components/Menuarea";
 import ViewPublic from "./Components/ViewPublic";
 import SingleRoom from "./Components/SingleRoom";
+import BookRoomComponent from "./Components/bookroomcomponent";
 const AppLayout = () => {
   return (
     <div>
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
       { path: "home/contactus", element: <ContactUs /> },
       { path: "home/aboutus", element: <AboutUs /> },
       { path: "home/getrooms/publicview", element: <ViewPublic /> },
+      {path :"/home/getrooms/publicview/:roomId/:roomNumber",element:<BookRoomComponent/>},
       {
         path: "/home/getrooms/publicview/:roomNumber",
         element: <SingleRoom />,

@@ -61,6 +61,13 @@ const Header = () => {
             whileHover={{ y: -3 }}
             className="cursor-pointer hover:text-orange-600 transition-colors duration-300"
           >
+            <Link to="home/getrooms/publicview">Rooms</Link>
+          </motion.span>
+
+          <motion.span
+            whileHover={{ y: -3 }}
+            className="cursor-pointer hover:text-orange-600 transition-colors duration-300"
+          >
             <Link to="/home/aboutus">About Us</Link>
           </motion.span>
         </nav>

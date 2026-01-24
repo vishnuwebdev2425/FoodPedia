@@ -10,7 +10,8 @@
   "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.23",
-    "parcel": "^2.16.3"
+    "parcel": "^2.16.3",
+    "process": "^0.11.10"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

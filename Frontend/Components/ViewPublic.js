@@ -46,30 +46,17 @@ const ViewPublic=()=>{
     visible: { y: 0, opacity: 1 },
     hover: { scale: 1.03, transition: { duration: 0.3 } },
   };
-  const BookingFuntion=async(roomNumber)=>{
+  const navigate = useNavigate();
+  const BookingFuntion=async(room)=>{
+    console.log(room);
+    console.log(room._id)
+    console.log(room.Admin._id)
 
-    const url=`http://localhost:5000/bookroom/${roomNumber}`
-    const options={
-        method:"GET",
-        headers:{
-            "Content-Type":"application/json",
-        
-        }
-    }
-    const response=await fetch(url,options)
-    console.log(response)
-    const data=await response.json()
-   
-    if(response.ok===true){
-        alert("Room Booked Succesfully Wait For The Call From Hotel")
-    }else{
-      alert("Room Already Occupied Please Try Another Room")
-    }
-
-
+    navigate(`/home/getrooms/publicview/${room.Admin._id}/${room.number}`);  
   }
-  const navigate=useNavigate()
+  
   const ViewHotelFunction=async(roomNumber)=>{
+   
     navigate(`/home/getrooms/publicview/${roomNumber}`);
 
 
@@ -187,7 +174,7 @@ const ViewPublic=()=>{
 
                 <div className="mt-6 flex gap-3">
                   <button
-                    onClick={() => BookingFuntion(room.number)}
+                    onClick={() => BookingFuntion(room)}
                     className="flex-1 cursor-pointer bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition"
                   >
                     Book
