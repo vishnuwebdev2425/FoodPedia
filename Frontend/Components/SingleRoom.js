@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ShimmerCardsGrid from "./Shimmer";
 import { motion } from "framer-motion";
 import {
@@ -17,8 +17,9 @@ import { MdBalcony, MdOutlineBathroom, MdCoffeeMaker } from "react-icons/md";
 
 const SingleRoom = () => {
   const { roomNumber } = useParams();
-  const [data, setData] = useState(null); 
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const featureIcons = {
     WiFi: <FaWifi />,
@@ -55,22 +56,13 @@ const SingleRoom = () => {
   if (loading || !data || Object.keys(data).length === 0) {
     return <ShimmerCardsGrid />;
   }
-  const bookingroomnumber=async(a,b)=>{
-    const roomNumber=a
-    const adminid=b._id
-    console.log(b._id)
-    const url=`http://localhost:5000/changingroomstatus/${adminid}/${roomNumber}`
-    const options={
-        method:"GET",
-        headers:{
-            "Content-Type":"application/json"
-        }
-    }
-    const result=await fetch(url,options)
-    if(result.ok==true){
-        alert("Room Is Requested To Owner Please Stay Tuned!!")
-    }
-  }
+  
+  const bookingroomnumber = async (a, b) => {
+    console.log("Working Fine");
+    console.log(a);
+    console.log(b);
+    navigate(`/home/getrooms/publicview/${b._id}/${a}`);
+  };
 
   return (
     <div className="min-h-screen bg-[#faf9f6] text-slate-900 font-sans pb-20">
@@ -225,15 +217,13 @@ const SingleRoom = () => {
 
               <div className="pt-4 space-y-3">
                 <motion.button
-                  onClick={()=>bookingroomnumber(data.number,data.Admin)}
+                  onClick={() => bookingroomnumber(data.number, data.Admin)}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold shadow-lg shadow-slate-200 transition-all cursor-pointer"
                 >
                   Book Room
                 </motion.button>
-
-                
               </div>
             </div>
           </motion.div>

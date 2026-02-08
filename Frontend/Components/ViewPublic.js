@@ -56,10 +56,7 @@ const ViewPublic=()=>{
   }
   
   const ViewHotelFunction=async(roomNumber)=>{
-   
     navigate(`/home/getrooms/publicview/${roomNumber}`);
-
-
   }
 
   

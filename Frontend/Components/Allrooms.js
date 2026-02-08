@@ -22,6 +22,12 @@ const Allrooms = () => {
   navigate("/app/admin/createroom", { replace: true });
 
  }
+ const checkingdetails=(id,number)=>{
+  console.log(id);
+  console.log(number);
+  navigate(`/app/admmin/checkroomrequest/${id}/${number}`);
+
+ }
   const finalfunction = async () => {
     const url = "http://localhost:5000/getallrooms";
     const jwt = Cookies.get("jwttoken");
@@ -92,11 +98,12 @@ const Allrooms = () => {
           </motion.h2>
 
           <div className="flex space-x-2">
-            
-              <button onClick={finalnavigation} className="bg-indigo-600 cursor-pointer  text-white px-6 py-2 rounded-full shadow-lg hover:bg-indigo-700 transition">
-                + Add New Room
-              </button>
-        
+            <button
+              onClick={finalnavigation}
+              className="bg-indigo-600 cursor-pointer  text-white px-6 py-2 rounded-full shadow-lg hover:bg-indigo-700 transition"
+            >
+              + Add New Room
+            </button>
           </div>
         </div>
 
@@ -107,9 +114,7 @@ const Allrooms = () => {
           animate="visible"
           className="grid grid-cols-1 md-grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {data.length === 0 && (
-            <ShimmerCardsGrid/>
-          )}
+          {data.length === 0 && <ShimmerCardsGrid />}
 
           {data.map((room, index) => (
             <motion.div
@@ -148,15 +153,33 @@ const Allrooms = () => {
                     ₹{room.price}
                   </span>
                 </div>
+                {room.status == "Waitlisted" ? (
+                  <div className="mt-6 flex gap-3">
+                    <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition">
+                      Edit Details
+                    </button>
 
-                <div className="mt-6 flex gap-3">
-                  <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition">
-                    Edit Details
-                  </button>
-                  <button className="flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 py-2 rounded-lg font-medium transition">
-                    Quick View
-                  </button>
-                </div>
+                    <button
+                      onClick={() => checkingdetails(room.Admin, room.number)}
+                      className="flex-1 bg-indigo-50 cursor-pointer hover:bg-indigo-100 text-indigo-600 py-2 rounded-lg font-medium transition"
+                    >
+                      Check Client Details
+                    </button>
+                  </div>
+                ) : (
+                  <div className="mt-6 flex gap-3">
+                    <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-2 rounded-lg font-medium transition">
+                      Edit Details
+                    </button>
+
+                    <button
+                     // onClick={() => checkingdetails(room.Admin, room.number)}
+                      className="flex-1 bg-indigo-50 cursor-pointer hover:bg-indigo-100 text-indigo-600 py-2 rounded-lg font-medium transition"
+                    >
+                      Quick View
+                    </button>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

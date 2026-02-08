@@ -5,7 +5,8 @@ const Adminmodel = require('../models/Adminmodel')
 const RoomModel=require('../models/RoomSchema')
 const Menumodel = require('../models/MenuModel')
 const BookModel=require("../models/bookSchema");
-const mongoose=require('mongoose');
+
+
 
 
 roomrouter.post("/addroom",UserAuth,async(req,res)=>{
@@ -65,6 +66,29 @@ roomrouter.get("/getallrooms",UserAuth,async(req,res)=>{
     return res.status(200).json({message:err.message})
   }
 })
+roomrouter.post("/clientrequest",UserAuth,async(req,res)=>{
+  const {id,roomNumber}=req.body;
+  console.log(id);
+  console.log(roomNumber);
+  try{
+   const response = await BookModel.findOne({
+     Admin: id,
+     roomnumber:roomNumber
+     
+   }); 
+   
+    if(!response){
+      return res.status(500).json({message:"Something went Wrong"});
+    }
+   
+   
+    return res.status(200).json({message:response});
+
+  }catch(err){
+    return res.status(200).json({message:err.message})
+  }
+
+});
 roomrouter.post("/bookroomfromuser", async (req, res) => {
   try {
     const{
@@ -76,16 +100,29 @@ roomrouter.post("/bookroomfromuser", async (req, res) => {
         number,
         state    
     }=req.body;
+    console.log(req.body);
+    console.log("check")
+    console.log(roomId);
+    console.log(roomNumber);
+    console.log("Check");
     const response=await RoomModel.findOne({Admin:roomId});
+    //console.log(response);
     if(!response){
       return res.status(200).json({message:"Room Address Is Not Available"})
     } 
-    const anotherresponse=await RoomModel.findOne({number:roomNumber})
+    const anotherresponse = await RoomModel.findOne(
+      { Admin: roomId },
+      { number: roomNumber },
+    );
+    console.log(anotherresponse);
     if(!anotherresponse){
       return res.status(200).json({message:"Room Id Is Not Available"});
+    }else{
+      console.log("Everything Working Fine ");
     }
+    
     const newobj=await new BookModel({
-      roomId:roomId,
+      Admin:roomId,     
       roomnumber:roomNumber,
       name:Name,
       mail:email,
@@ -105,6 +142,7 @@ roomrouter.post("/bookroomfromuser", async (req, res) => {
         new:true
       }
     );
+    final_result.save();
 
     return res.status(200).json({message:"Request Form SuccessFully"});
 

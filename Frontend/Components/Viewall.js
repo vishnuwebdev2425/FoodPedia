@@ -140,7 +140,7 @@ const Viewall=()=>{
                       ₹{room.price}
                     </span>
                     <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">
-                      Per Night
+                      Per Night room
                     </p>
                   </div>
                 </div>

@@ -1,9 +1,11 @@
-const mongoose=require('mongoose')
+const mongoose=require('mongoose');
+
 const BookingRoomSchema=new mongoose.Schema({
-    roomId:{
+    Admin:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"RoomModel"
+        ref:"Adminmodel"
     },
+   
     roomnumber:{
         type:Number,
         required:true,

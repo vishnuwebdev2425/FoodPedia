@@ -7,9 +7,9 @@ import {
   RouterProvider,
   Navigate,
   Outlet,
-  useNavigate,
 } from "react-router-dom";
 
+import Checkingrequest from "./Components/AdminRoomRequest";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Home from "./Components/Home";
@@ -61,13 +61,19 @@ const router = createBrowserRouter([
       { path: "home/login", element: <Login /> },
       { path: "home/reset", element: <Reset /> },
       { path: "home/contactus", element: <ContactUs /> },
+      {path:"home/menuitems",element:<Menuarea/>},
       { path: "home/aboutus", element: <AboutUs /> },
+
       { path: "home/getrooms/publicview", element: <ViewPublic /> },
-      {path :"/home/getrooms/publicview/:roomId/:roomNumber",element:<BookRoomComponent/>},
       {
-        path: "/home/getrooms/publicview/:roomNumber",
+        path: "home/getrooms/publicview/:roomNumber",
         element: <SingleRoom />,
       },
+      {
+        path: "home/getrooms/publicview/:roomId/:roomNumber",
+        element: <BookRoomComponent />,
+      },
+
       {
         path: "app",
         element: <Verification />,
@@ -81,6 +87,9 @@ const router = createBrowserRouter([
           { path: "getallrooms", element: <Viewall /> },
           { path: "admin/viewallrooms", element: <Allrooms /> },
           { path: "admin/viewmenu", element: <Menuarea /> },
+          {
+            path: "admmin/checkroomrequest/:id/:roomNumber", element:<Checkingrequest/>
+          },
         ],
       },
     ],
