@@ -190,13 +190,9 @@ roomrouter.post("/addmenuitem",async(req,res)=>{
   }
 })
 
-roomrouter.get("/getallmenuitems",UserAuth,async(req,res)=>{
+roomrouter.get("/getallmenuitems",async(req,res)=>{
   try{
-    const {_id}=req.user;
-    if(!_id){
-      return res.status(500).json({message:"Something Went Wrong"})
-
-    }
+   
     const result=await Menumodel.find({})
     res.status(200).send(result)
 
@@ -273,6 +269,23 @@ roomrouter.get("/changingroomstatus/:adminid/:roomNumber",async(req,res)=>{
 
   }catch(err){
     return res.status(200).json({message:err.message})
+  }
+})
+roomrouter.post("/updatedroomstatus",UserAuth,async(req,res)=>{
+  try{
+    const { Admin, roomNumber } = req.body;
+    
+     const final_result = await RoomModel.findOneAndUpdate(
+       { number: roomNumber, Admin:Admin },
+       { status: "Booked" },
+       { new: true },
+     );
+    
+    
+    res.status(200).send("Everything Works Fine");
+
+  }catch(err){
+    return res.status(400).json({message:err.message});
   }
 })
 

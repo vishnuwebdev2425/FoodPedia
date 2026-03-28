@@ -18,6 +18,9 @@ const Header = () => {
 
 
   }
+  const finalnavigatefunction=()=>{
+    navigate("/",{replace:true});
+  }
   return (
     <motion.header
       initial={{ y: -60, opacity: 0 }}
@@ -31,12 +34,16 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           className="flex items-center gap-2 cursor-pointer"
         >
-          <img
-            className="h-16"
-            src="https://res.cloudinary.com/djcslopvv/image/upload/v1765733691/foos-removebg-preview_aadmoj.png"
-            alt="FoodPedia"
-          />
-          <h1 className="text-2xl font-extrabold text-orange-600">
+          
+            <img
+              className="h-16"
+              src="https://res.cloudinary.com/djcslopvv/image/upload/v1765733691/foos-removebg-preview_aadmoj.png"
+              alt="FoodPedia"
+              onClick={finalnavigatefunction}
+            />
+          
+
+          <h1 className="text-2xl font-extrabold text-orange-600" onClick={finalnavigatefunction}>
             Food<span className="text-black">Pedia</span>
           </h1>
         </motion.div>

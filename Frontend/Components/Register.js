@@ -27,6 +27,7 @@ const Register = () => {
 
   const finalfunction = async (e) => {
     e.preventDefault();
+    console.log(data);
     const url = "http://localhost:5000/adminregister";
     const options = {
       method: "POST",

@@ -7,7 +7,7 @@ import ShimmerCardsGrid from "./Shimmer";
 const Allrooms = () => {
   const images = [
     "https://tse3.mm.bing.net/th/id/OIP.gkbu_3onf3vpOHdH-kGZswHaEo?rs=1&pid=ImgDetMain",
-    "https://tse2.mm.bing.net/th/id/OIP.uReSoQJcBd8-N1KwcfXdOQHaE8?rs=1&pid=ImgDetMain",
+    "https://www.nobroker.in/blog/wp-content/uploads/2023/04/luxury-bedroom-interior-design.webp",
     "https://tse2.mm.bing.net/th/id/OIP.7mluPgLsr36Y3qbtxOBd0gHaE8?rs=1&pid=ImgDetMain",
   ];
 

@@ -127,7 +127,7 @@ const AdminArea = () => {
       >
         <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 flex flex-col items-center">
           <img
-            src="https://tse4.mm.bing.net/th/id/OIP.eUmRjpZOz3-yqS_-wEwRPQHaE8?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
+            src="https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/sites/4/2022/02/01073127/Cover-1.png"
             alt="rooms"
             className="rounded-2xl w-full h-[350px] object-cover transition duration-700 group-hover:scale-105"
           />

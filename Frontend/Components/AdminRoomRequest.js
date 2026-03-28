@@ -51,6 +51,34 @@ const Checkingrequest = () => {
   useEffect(() => {
     gettingresult();
   },[]);
+  const finalrequestCall=async()=>{
+    
+    const { Admin, roomnumber,_id } = requestData;
+    console.log(requestData)
+    const sendBodyRequest = {
+      Admin: Admin,
+      roomNumber: roomnumber,
+      id:_id
+    };
+    const url = "http://localhost:5000/updatedroomstatus";
+    const options={
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        Authorization:`Bearer ${cookie}`
+      },
+      body:JSON.stringify(sendBodyRequest)
+    }
+
+    const response =await fetch(url,options);
+    if(response.ok){
+      alert("Your are Satisfying with The Customer Deatils  Please Contact Customer With Provided details")
+    }else{
+      alert("Something Went Wrong");
+    }
+
+
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
@@ -99,6 +127,7 @@ const Checkingrequest = () => {
                 whileHover={{ scale: 1.02, backgroundColor: "#059669" }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full bg-emerald-500 cursor-pointer text-white font-bold py-4 rounded-2xl shadow-lg shadow-emerald-100 transition-colors"
+                onClick={finalrequestCall}
               >
                 Accept Client Request
               </motion.button>

@@ -18,6 +18,9 @@ const ContactAdmin = () => {
       transition: { type: "spring", stiffness: 100 },
     },
   };
+  const finalcallingFunction=()=>{
+    alert("Request Submitted Please Wait For Team Response")
+  }
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white px-6 py-16 relative overflow-hidden">
@@ -35,7 +38,7 @@ const ContactAdmin = () => {
         >
           <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
           <img
-            src="https://tse2.mm.bing.net/th/id/OIP.H2xnF0RyREsv6vPAhDfjnQHaHa?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
+            src="https://tse3.mm.bing.net/th/id/OIP.SZpoyA_6LYNsmWnl_gDbzgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
             alt="Contact Admin"
             className="relative rounded-2xl shadow-2xl w-full h-[600px] object-cover border border-white/10"
           />
@@ -128,6 +131,7 @@ const ContactAdmin = () => {
               }}
               whileTap={{ scale: 0.98 }}
               className="w-full cursor-pointer py-4 rounded-xl bg-purple-600 hover:bg-purple-500 font-bold text-lg transition-all shadow-lg"
+              onClick={finalcallingFunction}
             >
               Send Priority Message
             </motion.button>

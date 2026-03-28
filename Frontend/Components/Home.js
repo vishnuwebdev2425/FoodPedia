@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const images = [
-  "https://tse3.mm.bing.net/th/id/OIP.T03aJagv5g4JwoG0Di4gFwHaEb?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-  "https://tse1.mm.bing.net/th/id/OIP.mrBfWqZYr48StmfUSvM3IgHaE8?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
+  "https://tse2.mm.bing.net/th/id/OIP.gDrQfNySM1o1FwACDiwbBAHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
+  "https://wallpaperaccess.com/full/767152.jpg",
   "https://digbza2f4g9qo.cloudfront.net/-/media/IndyCar/News/Standard/2015/07/07-19-Favorite-Ice-Cream-Std.jpg?h=366&iar=0&w=610&vs=1&d=20150718T183422Z",
 ];
 const features = [
@@ -96,9 +96,12 @@ const Home = () => {
           viewport={{ once: true }}
           className="absolute bottom-12 left-12"
         >
-          <button className="px-8 py-4 cursor-pointer bg-orange-600 text-white rounded-2xl font-semibold shadow-lg shadow-orange-300 hover:bg-orange-700 hover:shadow-xl transition-all">
-            Get Started
-          </button>
+          <Link to="/home/register">
+            <button className="px-8 py-4 cursor-pointer bg-orange-600 text-white rounded-2xl font-semibold shadow-lg shadow-orange-300 hover:bg-orange-700 hover:shadow-xl transition-all">
+              Get Started
+            </button>
+          </Link>
+
           <Link to="/home/getrooms/publicview">
             <button className="px-8 py-4 cursor-pointer ml-2.5 bg-orange-600 text-white rounded-2xl font-semibold shadow-lg shadow-orange-300 hover:bg-orange-700 hover:shadow-xl transition-all">
               Book Your Room Now
@@ -167,9 +170,12 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="mt-16"
               >
-                <button className="px-8 py-4 cursor-pointer bg-orange-600 text-white rounded-2xl font-semibold shadow-lg shadow-orange-300 hover:bg-orange-700 hover:shadow-xl transition">
-                  Register Your Hotel
-                </button>
+                {" "}
+                <Link to="/home/register">
+                  <button className="px-8 py-4 cursor-pointer bg-orange-600 text-white rounded-2xl font-semibold shadow-lg shadow-orange-300 hover:bg-orange-700 hover:shadow-xl transition">
+                    Register Your Hotel
+                  </button>
+                </Link>
               </motion.div>
             </div>
           </section>
