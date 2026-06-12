@@ -37,7 +37,6 @@ const AddRoom = () => {
 
   const submit = async(e) => {
     e.preventDefault();
-    console.log("ROOM SAVED:", data);
     const Roomdata=data
     setData({
       number: "",
@@ -48,7 +47,6 @@ const AddRoom = () => {
     });
     const url="http://localhost:5000/addroom"
     const token=Cookies.get("jwttoken")
-    console.log(token)
     const options={
       method:"POST",
       headers:{

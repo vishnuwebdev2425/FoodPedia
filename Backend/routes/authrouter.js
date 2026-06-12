@@ -5,6 +5,7 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken')
 
 requestRouter.post("/adminregister", async (req, res) => {
+  console.log("Request Reached SuccessFully")
   try {
     const newdata = req.body;
     const {
@@ -34,8 +35,10 @@ requestRouter.post("/adminregister", async (req, res) => {
     );
 
     if (!result) {
+      console.log("Something Went Wrong")
       return res.status(400).json({ message: "Invalid input fields" });
     }
+    console.log("Reached")
     const checking_result=await Adminmodel.find({HotelId})
     if (checking_result.length!==0) {
       return res.status(400).json({ message: "Hotel Already Registered" });

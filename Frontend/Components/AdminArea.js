@@ -93,7 +93,7 @@ const AdminArea = () => {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-8 max-w-7xl mx-auto pb-10"
       >
         <AdminCard
-          img="https://tse1.mm.bing.net/th/id/OIP.w1yPPFpoDRf1eCOf1C58xQHaE8?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
+          img="https://tse4.mm.bing.net/th/id/OIP.sojoolvNcR7mTsgtodSZ3QAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
           title="Track Orders"
           btnColor="bg-yellow-500"
           variants={itemVariants}
@@ -105,13 +105,13 @@ const AdminArea = () => {
           variants={itemVariants}
         />
         <AdminCard
-          img="https://tse1.mm.bing.net/th/id/OIP.1oUBVrczPzKv0ncc14Gd1gHaE7?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
+          img="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/team-logo-design-template-f4dc40ab520745e2e4d7c7578ad1899f_screen.jpg?ts=1681181136"
           title="Team Details"
           btnColor="bg-blue-500"
           variants={itemVariants}
         />
         <AdminCard
-          img="https://tse2.mm.bing.net/th/id/OIP.Y2zd3VxtVAO3_zZ9wPDMLgHaEu?cb=ucfimg2&ucfimg=1&w=870&h=555&rs=1&pid=ImgDetMain&o=7&rm=3"
+          img="https://s3.envato.com/files/506953043/1.jpg"
           title="Hotel Profile"
           btnColor="bg-purple-500"
           variants={itemVariants}

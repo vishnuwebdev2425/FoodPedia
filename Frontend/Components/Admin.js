@@ -24,19 +24,23 @@ const Admin = () => {
 
   const finalfunction = async (event) => {
     event.preventDefault();
+
+    const newData = {
+      Number: data.Mobile,
+      HotelID:data.Room,
+      Password:data.Password
+    };
     
-    const finaldata=data
     const url="http://localhost:5000/adminlogin";
     const options={
       method:"POST",
       headers:{
         "Content-Type":"application/json"
       },
-      body:JSON.stringify(finaldata)
+      body:JSON.stringify(newData)
     }
     const final_data=await fetch(url,options)
     const response=await final_data.json()
-    console.log(response)
     if(final_data.ok===true){
       lastredirectFunction()
     }else{

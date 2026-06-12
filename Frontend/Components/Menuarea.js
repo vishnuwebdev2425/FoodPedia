@@ -24,10 +24,9 @@ const Menuarea = () => {
       };
       const result = await fetch(url, options);
       const fetchedData = await result.json();
-      console.log(fetchedData);
       usedata(fetchedData);
     } catch (error) {
-      console.error(error);
+      alert("Something Went Wrong Please Try Again Later")
     } finally {
       setLoading(false);
     }

@@ -43,9 +43,7 @@ const Login = () => {
     }
     const gettingdata=await fetch(url,options)
     const responsedata=await gettingdata.json()
-    console.log(responsedata)
     const {token}=responsedata
-    console.log(token)
     const Cookiedata = Cookies.set("jwttoken", token, {expires: 7});
     if(token){
       finalnavigateFunction()

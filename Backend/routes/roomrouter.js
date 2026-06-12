@@ -11,6 +11,7 @@ const BookModel=require("../models/bookSchema");
 
 roomrouter.post("/addroom",UserAuth,async(req,res)=>{
     try{
+        console.log("AddRoom Route Reached SuccessFully")
         const data=req.body
         const{number,password,price,ac,features}=data
         
@@ -33,7 +34,9 @@ roomrouter.post("/addroom",UserAuth,async(req,res)=>{
             message: "Invalid fields in request — remove extra fields",
           });
         }
+        console.log("Checked Updates Passed")
         const {_id}=req.user
+        console.log("User Found")
         const checkingAdmin=await Adminmodel.findOne({_id})
         if(!checkingAdmin){
             return res.status(500).json({message:"Admin details Not Verified"})
@@ -47,7 +50,8 @@ roomrouter.post("/addroom",UserAuth,async(req,res)=>{
             features:features
 
         }
-        const newHotelroom=await new RoomModel(newobj)
+
+        const newHotelroom=new RoomModel(newobj)
         await newHotelroom.save()
         return res.status(200).json({message:"Everything went  Good"})
     }catch(err){
@@ -68,8 +72,6 @@ roomrouter.get("/getallrooms",UserAuth,async(req,res)=>{
 })
 roomrouter.post("/clientrequest",UserAuth,async(req,res)=>{
   const {id,roomNumber}=req.body;
-  console.log(id);
-  console.log(roomNumber);
   try{
    const response = await BookModel.findOne({
      Admin: id,
@@ -100,11 +102,7 @@ roomrouter.post("/bookroomfromuser", async (req, res) => {
         number,
         state    
     }=req.body;
-    console.log(req.body);
-    console.log("check")
-    console.log(roomId);
-    console.log(roomNumber);
-    console.log("Check");
+
     const response=await RoomModel.findOne({Admin:roomId});
     //console.log(response);
     if(!response){
@@ -114,13 +112,10 @@ roomrouter.post("/bookroomfromuser", async (req, res) => {
       { Admin: roomId },
       { number: roomNumber },
     );
-    console.log(anotherresponse);
+
     if(!anotherresponse){
       return res.status(200).json({message:"Room Id Is Not Available"});
-    }else{
-      console.log("Everything Working Fine ");
     }
-    
     const newobj=await new BookModel({
       Admin:roomId,     
       roomnumber:roomNumber,

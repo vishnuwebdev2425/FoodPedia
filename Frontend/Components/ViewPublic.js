@@ -13,7 +13,7 @@ const ViewPublic=()=>{
   const images = [
     "https://tse3.mm.bing.net/th/id/OIP.gkbu_3onf3vpOHdH-kGZswHaEo?rs=1&pid=ImgDetMain",
     "https://tse2.mm.bing.net/th/id/OIP.uReSoQJcBd8-N1KwcfXdOQHaE8?rs=1&pid=ImgDetMain",
-    "https://tse2.mm.bing.net/th/id/OIP.7mluPgLsr36Y3qbtxOBd0gHaE8?rs=1&pid=ImgDetMain",
+    "https://tse4.mm.bing.net/th/id/OIP.2q-VUQX5g2SzGJN_f9ppQwHaEo?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
   ];
   
   const callfunction = async () => {
@@ -28,7 +28,7 @@ const ViewPublic=()=>{
     };
     const response = await fetch(url, options);
     const data = await response.json();
-    console.log(data)
+
     
     newdata(data);
   };
