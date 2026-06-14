@@ -2,21 +2,23 @@ const express=require('express')
 const app=express()
 const mongoose=require('mongoose')
 const cors = require("cors");
-
+require("dotenv").config();
 app.use(cors());
 console.log('Working')
 app.use(express.json());
 const authrouter=require("./routes/authrouter")
 const adminRouter = require('./routes/adminlogin');
-const roomrouter=require("./routes/roomrouter")
+const roomrouter=require("./routes/roomrouter");
+app.use("/", authrouter);
+app.use("/", adminRouter);
+app.use("/", roomrouter);
 
+
+const PORT=process.env.PORT || 5000
 const InitalizeDB=async()=>{
     try{
-        console.log("Reached Here   ")
-        await mongoose.connect(
-          "mongodb+srv://VishnuDev:srxR3fYnjuS0h23e@vishnudev.7g1lbox.mongodb.net/FoodPedia"
-        );
-        app.listen(5000, () => {
+        await mongoose.connect(process.env.MONGO_URI);
+        app.listen(PORT, () => {
           console.log("app is Listening in a Server 5000");
         });
 
@@ -26,8 +28,7 @@ const InitalizeDB=async()=>{
     }
 
 }
-InitalizeDB()
 
-app.use("/",authrouter)
-app.use("/",adminRouter)
-app.use("/",roomrouter)
+
+
+InitalizeDB()

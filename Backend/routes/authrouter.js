@@ -5,7 +5,7 @@ const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken')
 
 requestRouter.post("/adminregister", async (req, res) => {
-  console.log("Request Reached SuccessFully")
+
   try {
     const newdata = req.body;
     const {
