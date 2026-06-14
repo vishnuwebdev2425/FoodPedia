@@ -28,7 +28,7 @@ const Register = () => {
   const finalfunction = async (e) => {
     e.preventDefault();
     console.log(data);
-    const url = "http://localhost:5000/adminregister";
+    const url = `${import.meta.env.VITE_API_URL}/adminregister`;
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

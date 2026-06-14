@@ -33,7 +33,7 @@ const Login = () => {
     e.preventDefault();
     console.log(data);
     const sendingdata=data
-    const url="http://localhost:5000/signin"
+    const url = `${import.meta.env.VITE_API_URL}/signin`;
     const options={
       method:"POST",
       headers:{

@@ -29,7 +29,7 @@ const Allrooms = () => {
 
  }
   const finalfunction = async () => {
-    const url = "http://localhost:5000/getallrooms";
+    const url = `${import.meta.env.VITE_API_URL}/getallrooms`;
     const jwt = Cookies.get("jwttoken");
 
     const option = {

@@ -45,7 +45,7 @@ const AddRoom = () => {
       ac: false,
       features: [],
     });
-    const url="http://localhost:5000/addroom"
+   const url = `${import.meta.env.VITE_API_URL}/addroom`;
     const token=Cookies.get("jwttoken")
     const options={
       method:"POST",

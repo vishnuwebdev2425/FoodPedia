@@ -38,7 +38,7 @@ const SingleRoom = () => {
 
   const gettingroomdetails = async () => {
     try {
-      const url = `http://localhost:5000/getsingleroom/${roomNumber}`;
+      const url = `${import.meta.env.VITE_API_URL}/getsingleroom/${roomNumber}`;
       const options = {
         method: "GET",
         headers: { "Content-Type": "application/json" },

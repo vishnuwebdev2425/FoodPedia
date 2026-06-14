@@ -17,7 +17,7 @@ const ViewPublic=()=>{
   ];
   
   const callfunction = async () => {
-    const url = "http://localhost:5000/getallroompublicview";
+    const url = `${import.meta.env.VITE_API_URL}/getallroompublicview`;
   
     const options = {
       method: "GET",

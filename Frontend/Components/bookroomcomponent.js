@@ -43,7 +43,7 @@ const BookRoomComponent = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const url = "http://localhost:5000/bookroomfromuser";
+      const url = `${import.meta.env.VITE_API_URL}/bookroomfromuser`;
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -13,7 +13,7 @@ const Menuarea = () => {
 
   const finalfunction = async () => {
     try {
-      const url = "http://localhost:5000/getallmenuitems";
+      const url = `${import.meta.env.VITE_API_URL}/getallmenuitems`;
       const jwt = Cookies.get("jwttoken");
       const options = {
         method: "GET",
