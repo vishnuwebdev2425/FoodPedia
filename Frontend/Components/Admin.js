@@ -31,7 +31,7 @@ const Admin = () => {
       Password:data.Password
     };
     
-    const url = `${import.meta.env.VITE_API_URL}/adminlogin`;
+    const url = `${process.env.API_URL}/adminlogin`;
     const options={
       method:"POST",
       headers:{

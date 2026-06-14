@@ -24,7 +24,7 @@ const Reset = () => {
     e.preventDefault();
     console.log(data)
     const Resetdata=data
-    const url = `${import.meta.env.VITE_API_URL}/resetpassword`;
+    const url = `${process.env.API_URL}/resetpassword`;
     const options={
       method:"POST",
       headers:{

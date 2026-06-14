@@ -24,7 +24,7 @@ const Checkingrequest = () => {
   const gettingresult = async () => {
     try {
       const data = { id, roomNumber };
-      const url = `${import.meta.env.VITE_API_URL}/clientrequest`;// Note: changed localhost/5000 to localhost:5000
+      const url = `${process.env.API_URL}/clientrequest`;// Note: changed localhost/5000 to localhost:5000
 
       const options = {
         method: "POST",

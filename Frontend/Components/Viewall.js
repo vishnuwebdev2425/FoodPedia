@@ -45,7 +45,7 @@ const Viewall=()=>{
   };
   const BookingFuntion=async(roomNumber)=>{
 
-    const url = `${import.meta.env.VITE_API_URL}/bookroom/${roomNumber}`;
+    const url = `${process.env.API_URL}/bookroom/${roomNumber}`;
     const options={
         method:"GET",
         headers:{

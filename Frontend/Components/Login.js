@@ -33,7 +33,7 @@ const Login = () => {
     e.preventDefault();
     console.log(data);
     const sendingdata=data
-    const url = `${import.meta.env.VITE_API_URL}/signin`;
+    const url = `${process.env.API_URL}/signin`;
     const options={
       method:"POST",
       headers:{
